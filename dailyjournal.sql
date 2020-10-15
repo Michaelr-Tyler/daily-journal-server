@@ -39,3 +39,12 @@ INSERT INTO `Entries` VALUES (null, "2020-11-07", "other tings", "other code tin
 SELECT * FROM `Moods`;
 SELECT * FROM `Entries`;
 SELECT * FROM `Instructor`;
+
+SELECT
+    e.id,
+    e.date,
+    e.concept,
+    e.entry,
+    e.mood_id,
+    e.instructor_id
+FROM Entries e;
