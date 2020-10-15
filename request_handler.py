@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-from entries import get_all_entries
+from entries import get_all_entries, get_single_entry
 
 class HandleRequests(BaseHTTPRequestHandler):
 
@@ -44,7 +44,7 @@ class HandleRequests(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-        self.send_header('Access-Control-Allow-Headers', 'X-Requested-With')
+        self.send_header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type')
         self.end_headers()
 
     # Get request
@@ -64,7 +64,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             if resource == "entries":
                 if id is not None:
-                    pass
+                    response = get_single_entry(id)
                 else:
                     response = get_all_entries()
         # Response from parse_url() is a tuple with 3
