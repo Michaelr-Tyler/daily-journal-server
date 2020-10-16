@@ -41,13 +41,6 @@ SELECT * FROM `Entries`;
 SELECT * FROM `Instructor`;
 
 SELECT
-    e.id,
-    e.date,
-    e.concept,
-    e.entry,
-    e.mood_id,
-    e.instructor_id
-FROM Entries e;
-
-DELETE FROM entries 
-WHERE id = 3;
+    m.id,
+    m.label
+FROM mood m

@@ -1,6 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from entries import get_all_entries, get_single_entry, delete_entry
+from instructors import get_all_instructors, get_single_instructor
+from moods import get_all_moods, get_single_mood
 
 class HandleRequests(BaseHTTPRequestHandler):
 
@@ -64,13 +66,23 @@ class HandleRequests(BaseHTTPRequestHandler):
 
             if resource == "entries":
                 if id is not None:
-                    response = get_single_entry(id)
+                    response = f"{get_single_entry(id)}"
                 else:
-                    response = get_all_entries()
+                    response = f"{get_all_entries()}"
+            elif resource == "instructors":
+                if id is not None:
+                    response = f"{get_single_instructor(id)}"
+                else:
+                    response = f"{get_all_instructors()}"
+            elif resource == "moods":
+                if id is not None:
+                    response = f"{get_single_mood(id)}"
+                else:
+                    response = f"{get_all_moods()}"
 
         elif len(parsed) == 3:
             ( resource, key, value ) = parsed
-            if key == "email" and resource == "customers":
+            if key == "#" and resource == "#":
                 pass
 
         self.wfile.write(response.encode())
