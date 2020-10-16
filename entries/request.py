@@ -50,3 +50,12 @@ def get_single_entry(id):
     entry = Entry(data['id'], data['date'], data['concept'], data['entry'], data['mood_id'], data['instructor_id'])
 
     return json.dumps(entry.__dict__)
+
+def delete_entry(id):
+    with sqlite3.connect("./dailyjournal.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM entries 
+        WHERE id = ?
+        """, (id, ))

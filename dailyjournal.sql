@@ -48,3 +48,6 @@ SELECT
     e.mood_id,
     e.instructor_id
 FROM Entries e;
+
+DELETE FROM entries 
+WHERE id = 3;
